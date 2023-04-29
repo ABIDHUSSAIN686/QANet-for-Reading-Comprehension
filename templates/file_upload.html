@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Currency Detector</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif;
+background: rgb(221, 216, 226);
+background: linear-gradient(0deg, rgb(255, 255, 255) 0%, rgb(225, 215, 219) 100%);
+background-size: 100% 100vh;
+}
+.mySlides {display: none}
+#preview {
+  width: 500px;
+  height: 200px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.Padding{
+    padding-bottom: 30px;
+}
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.input-label {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  height: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #292828;
+  background-color: #dcd2d2;
+}
+
+input{
+    top:50%;
+    background-color:#0a0a23;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+</style>
+</head>
+<body >
+
+<!-- Navbar -->
+<div class="w3-top ">
+  <div class="w3-bar  " style="height: 50px; font-weight: bold; font-size: 20px; background-color: #0a0a23; color: #fff;">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="home" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="contribution" class="w3-bar-item w3-button w3-padding-large">TEAM</a>
+   
+  </div>
+</div>
+
+  <!-- The Band Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:1200px;" id="band">
+    <h2 class="w3 input-label" style="font-size: 30px;">AUTOMATED Q/A FOR COMPREHENSION </h2>
+    <p class="w3-opacity" style="font-size: 20px;"><i>Innovate, automate, engage!</i></p>
+    <p class="w3-center"style="font-size: 18px;">
+      The Q/A generation involves using a machine learning model to automatically generate questions and answers based on a given input. This technology has a wide range of applications, including education, customer support, and content creation. By automating the process of generating Q/A pairs, businesses and educators can save time and resources while providing users with more engaging and interactive content.
+    </p>
+    <div class="Padding"></div>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <div class="input-wrapper">
+          <div class="input-label">COMPREHENSION</div>
+          <div class="input-field">
+            <textarea id="text1" name="text1" rows="6" cols="50"></textarea>
+          </div>
+        </div>    
+        <input type="submit" value="Submit" id="upload-btn">
+    </form>
+    <div class="Padding"></div>
+    <h2 class="input-label">Q/A GENERATED </h2>
+    <div class="result input-field">
+      <textarea id="result" rows="6" cols="50"></textarea>
+    </div>  
+  </div>
+
+  
+  <script>
+
+  const form = document.querySelector('form');
+    form.addEventListener('submit', async (e) => {
+      document.getElementById("result").innerHTML=""
+      e.preventDefault();
+      const formData = new FormData(form);
+      const response = await fetch('/home', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      const resultLines = result.result.split('\n');
+      const resultHTML = result.result.split(',');
+      document.getElementById("result").innerHTML =resultHTML
+    });
+
+  </script>
+</body>
+</html>
